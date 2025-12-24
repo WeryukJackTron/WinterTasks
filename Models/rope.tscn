@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dewjubyka0tji"]
+
+[ext_resource type="Material" uid="uid://o0uiqvukjnv0" path="res://Assets/2D/textures/Materials/M_rope.tres" id="1_7tdt3"]
+
+[node name="Rope" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("1_7tdt3")
+radius = 0.06

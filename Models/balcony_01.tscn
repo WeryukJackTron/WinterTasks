@@ -1,0 +1,37 @@
+[gd_scene load_steps=14 format=3 uid="uid://dr82evytmp28p"]
+
+[ext_resource type="PackedScene" uid="uid://668ftl4bua76" path="res://Assets/3D/buildings/SM_BLD_balcony_v01_01.fbx" id="1_n181n"]
+[ext_resource type="Texture2D" uid="uid://c6taxxxlone3g" path="res://Assets/2D/textures/T_wood_03_BC.png" id="2_lgxbf"]
+[ext_resource type="Texture2D" uid="uid://byyc2ay0u3eh" path="res://Assets/2D/textures/T_wall_02_BC.png" id="3_41pyd"]
+[ext_resource type="Texture2D" uid="uid://rdv1uguwltsn" path="res://Assets/2D/textures/T_rooftiles_01_BC.png" id="4_xxcf7"]
+[ext_resource type="Texture2D" uid="uid://dj0ncmvui7ytf" path="res://Assets/2D/textures/T_metal_01_BC.png" id="5_tmxqk"]
+[ext_resource type="Texture2D" uid="uid://bj0p70qo5w403" path="res://Assets/2D/textures/T_gold_BC.png" id="6_t7fqh"]
+[ext_resource type="Texture2D" uid="uid://b46br8i1v6qg3" path="res://Assets/2D/textures/T_wood_07_BC.png" id="7_xrb8f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5k88x"]
+albedo_texture = ExtResource("2_lgxbf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or2ls"]
+albedo_texture = ExtResource("3_41pyd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8f0al"]
+albedo_texture = ExtResource("4_xxcf7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5mcl"]
+albedo_texture = ExtResource("5_tmxqk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o88v4"]
+albedo_texture = ExtResource("6_t7fqh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ww7cl"]
+albedo_texture = ExtResource("7_xrb8f")
+
+[node name="SM_BLD_balcony_v01_01" instance=ExtResource("1_n181n")]
+
+[node name="SM_BLD_balcony_v01_01" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5k88x")
+surface_material_override/1 = SubResource("StandardMaterial3D_or2ls")
+surface_material_override/2 = SubResource("StandardMaterial3D_8f0al")
+surface_material_override/3 = SubResource("StandardMaterial3D_y5mcl")
+surface_material_override/4 = SubResource("StandardMaterial3D_o88v4")
+surface_material_override/5 = SubResource("StandardMaterial3D_ww7cl")

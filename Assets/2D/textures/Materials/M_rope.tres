@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://o0uiqvukjnv0"]
+
+[ext_resource type="Texture2D" uid="uid://c57j1188sqd1r" path="res://Assets/2D/textures/T_rope.png" id="1_54bnn"]
+
+[resource]
+albedo_texture = ExtResource("1_54bnn")

@@ -1,0 +1,257 @@
+[gd_scene load_steps=16 format=3 uid="uid://bs72ogkvdd7d6"]
+
+[ext_resource type="Script" uid="uid://mb6afmicjlms" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
+[ext_resource type="Texture2D" uid="uid://b8qbyvu1mffan" path="res://Assets/2D/green-crosshair.png" id="2_wr06p"]
+[ext_resource type="Texture2D" uid="uid://bs1mtsqo8acw1" path="res://Assets/2D/White-Apricot-Gift-icon.png" id="3_5hfox"]
+[ext_resource type="Texture2D" uid="uid://db2nctdjxlb2f" path="res://Assets/2D/hook.png" id="4_6dqce"]
+[ext_resource type="Texture2D" uid="uid://bi4yeioi7po3w" path="res://Assets/2D/wasd.png" id="5_1tksx"]
+[ext_resource type="Texture2D" uid="uid://brq17yofr0uy0" path="res://Assets/2D/extra_jump.png" id="5_ths8c"]
+[ext_resource type="Texture2D" uid="uid://dpycwrlttrui7" path="res://Assets/2D/Spacebar.png" id="6_ths8c"]
+[ext_resource type="Texture2D" uid="uid://duw5wqrpgb5gq" path="res://Assets/2D/left_click.png" id="7_x436g"]
+[ext_resource type="Texture2D" uid="uid://7r2g1fxja7ko" path="res://Assets/2D/right_click.png" id="8_q1ipm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
+albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_23gov"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bw3si"]
+
+[sub_resource type="FontFile" id="FontFile_5hfox"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+
+[sub_resource type="Gradient" id="Gradient_ths8c"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.298039, 0.701961, 1, 0.545098)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x436g"]
+gradient = SubResource("Gradient_ths8c")
+
+[node name="ProtoController" type="CharacterBody3D" node_paths=PackedStringArray("hook_ui", "ui_controls", "ui_extra_jump")]
+script = ExtResource("1_ucva2")
+can_sprint = true
+can_freefly = true
+hook_ui = NodePath("Head/Camera3D/TextureRect3")
+ui_controls = NodePath("Head/Camera3D/Control/CanvasLayer")
+ui_extra_jump = NodePath("Head/Camera3D/TextureRect4")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_iof21")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_23gov")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bw3si")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="RopeStart" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.529396, 0)
+
+[node name="Head" type="Node3D" parent="."]
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="TextureRect" type="TextureRect" parent="Head/Camera3D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wr06p")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Head/Camera3D"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 115.0
+texture = ExtResource("3_5hfox")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Head/Camera3D"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -108.0
+offset_right = -12.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_6dqce")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="Head/Camera3D"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -218.0
+offset_right = -12.0
+offset_bottom = -118.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("5_ths8c")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Head/Camera3D"]
+offset_left = 109.0
+offset_right = 234.0
+offset_bottom = 125.0
+theme_override_fonts/normal_font = SubResource("FontFile_5hfox")
+theme_override_font_sizes/normal_font_size = 64
+text = "0	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Head/Camera3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3D/Control"]
+
+[node name="Button" type="TextureRect" parent="Head/Camera3D/Control/CanvasLayer"]
+offset_right = 1156.0
+offset_bottom = 653.0
+texture = SubResource("GradientTexture1D_x436g")
+
+[node name="TextureRect4" type="TextureRect" parent="Head/Camera3D/Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -426.0
+offset_top = -100.0
+offset_right = -226.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_1tksx")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Head/Camera3D/Control/CanvasLayer/TextureRect4"]
+layout_mode = 0
+offset_top = -21.0
+offset_right = 200.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 32
+text = "MOVEMENT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect5" type="TextureRect" parent="Head/Camera3D/Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -100.0
+offset_right = -1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ths8c")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Head/Camera3D/Control/CanvasLayer/TextureRect5"]
+layout_mode = 0
+offset_top = -21.0
+offset_right = 200.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 32
+text = "JUMP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect6" type="TextureRect" parent="Head/Camera3D/Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 74.0
+offset_top = -100.0
+offset_right = 224.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_x436g")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Head/Camera3D/Control/CanvasLayer/TextureRect6"]
+layout_mode = 0
+offset_left = -17.425
+offset_top = -42.77
+offset_right = 182.575
+offset_bottom = 7.23
+theme_override_font_sizes/font_size = 32
+text = "SHOOT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect7" type="TextureRect" parent="Head/Camera3D/Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 224.0
+offset_top = -100.0
+offset_right = 374.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_q1ipm")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Head/Camera3D/Control/CanvasLayer/TextureRect7"]
+layout_mode = 0
+offset_left = -17.425
+offset_top = -42.77
+offset_right = 182.575
+offset_bottom = 7.23
+theme_override_font_sizes/font_size = 32
+text = "RELEASE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Head/Camera3D/Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -30)

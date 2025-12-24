@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://qqyowc2ejy5f"]
+
+[ext_resource type="ArrayMesh" uid="uid://csxm3mm507f1w" path="res://Models/Meshes/tree_decoration.res" id="1_ovthd"]
+[ext_resource type="ArrayMesh" uid="uid://x1rtq6j31kgv" path="res://Models/Meshes/tree_garland.res" id="2_bx3ut"]
+[ext_resource type="ArrayMesh" uid="uid://c7ywqm0j82sqt" path="res://Models/Meshes/tree_leafs.res" id="3_111qh"]
+[ext_resource type="ArrayMesh" uid="uid://bcnfeftq74xor" path="res://Models/Meshes/tree_star.res" id="4_ai1vn"]
+[ext_resource type="ArrayMesh" uid="uid://d1sunji4abq0x" path="res://Models/Meshes/tree_trunk.res" id="5_hm58s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ovthd"]
+radius = 0.212736
+height = 2.64431
+
+[node name="ChristmasTree" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.020703, -0.00884986)
+mesh = ExtResource("1_ovthd")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0724447, 0.0193578, 0.00142822, -0.0193539, 0.0724588, -0.000389619, -0.00148039, 7.78902e-06, 0.0749854, 0, 0.858373, -0.00884986)
+mesh = ExtResource("2_bx3ut")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.020703, -0.00884986)
+mesh = ExtResource("3_111qh")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.18557e-09, -0.05, -2.18557e-09, 0, -2.18557e-09, 0.05, -0.05, 2.18557e-09, 9.55343e-17, 0, 2.05764, -0.00884992)
+mesh = ExtResource("4_ai1vn")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.020703, -0.00884986)
+mesh = ExtResource("5_hm58s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17427, 0)
+shape = SubResource("CapsuleShape3D_ovthd")
