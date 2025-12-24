@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=17 format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" uid="uid://mb6afmicjlms" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
 [ext_resource type="Texture2D" uid="uid://b8qbyvu1mffan" path="res://Assets/2D/green-crosshair.png" id="2_wr06p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dpycwrlttrui7" path="res://Assets/2D/Spacebar.png" id="6_ths8c"]
 [ext_resource type="Texture2D" uid="uid://duw5wqrpgb5gq" path="res://Assets/2D/left_click.png" id="7_x436g"]
 [ext_resource type="Texture2D" uid="uid://7r2g1fxja7ko" path="res://Assets/2D/right_click.png" id="8_q1ipm"]
+[ext_resource type="Texture2D" uid="uid://56y5geshcobm" path="res://Assets/2D/E_key.png" id="8_x436g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -39,13 +40,14 @@ colors = PackedColorArray(0.298039, 0.701961, 1, 0.545098)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_x436g"]
 gradient = SubResource("Gradient_ths8c")
 
-[node name="ProtoController" type="CharacterBody3D" node_paths=PackedStringArray("hook_ui", "ui_controls", "ui_extra_jump")]
+[node name="ProtoController" type="CharacterBody3D" node_paths=PackedStringArray("hook_ui", "ui_controls", "ui_extra_jump", "ui_interact")]
 script = ExtResource("1_ucva2")
 can_sprint = true
 can_freefly = true
 hook_ui = NodePath("Head/Camera3D/TextureRect3")
 ui_controls = NodePath("Head/Camera3D/Control/CanvasLayer")
 ui_extra_jump = NodePath("Head/Camera3D/TextureRect4")
+ui_interact = NodePath("Head/Camera3D/ColorRect")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_iof21")
@@ -103,6 +105,25 @@ grow_vertical = 0
 texture = ExtResource("4_6dqce")
 expand_mode = 1
 
+[node name="ColorRect" type="ColorRect" parent="Head/Camera3D"]
+offset_left = 10.0
+offset_top = 540.0
+offset_right = 100.0
+offset_bottom = 630.0
+
+[node name="TextureRect5" type="TextureRect" parent="Head/Camera3D/ColorRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -95.0
+offset_right = 95.0
+offset_bottom = 5.0
+grow_vertical = 0
+texture = ExtResource("8_x436g")
+expand_mode = 1
+
 [node name="TextureRect4" type="TextureRect" parent="Head/Camera3D"]
 anchors_preset = 3
 anchor_left = 1.0
@@ -137,8 +158,8 @@ offset_bottom = 40.0
 [node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3D/Control"]
 
 [node name="Button" type="TextureRect" parent="Head/Camera3D/Control/CanvasLayer"]
-offset_right = 1156.0
-offset_bottom = 653.0
+offset_right = 1804.0
+offset_bottom = 1109.0
 texture = SubResource("GradientTexture1D_x436g")
 
 [node name="TextureRect4" type="TextureRect" parent="Head/Camera3D/Control/CanvasLayer"]
@@ -188,6 +209,32 @@ offset_right = 200.0
 offset_bottom = 29.0
 theme_override_font_sizes/font_size = 32
 text = "JUMP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect8" type="TextureRect" parent="Head/Camera3D/Control/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = 151.0
+offset_right = -176.0
+offset_bottom = 251.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_x436g")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Head/Camera3D/Control/CanvasLayer/TextureRect8"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = -60.0
+offset_right = 152.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 32
+text = "INTERACT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -242,16 +289,6 @@ theme_override_font_sizes/font_size = 32
 text = "RELEASE"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Head/Camera3D/Control/CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
 
 [node name="RayCast3D" type="RayCast3D" parent="Head"]
 target_position = Vector3(0, 0, -30)

@@ -39,12 +39,16 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.get_class() == "CharacterBody3D" && !completed:
 		can_interact = true
 		player = body
+		var auxscript: PlayerMovement = body
+		auxscript.ui_interact.visible = true
 		if spotlight != null:
 			spotlight.visible = false
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.get_class() == "CharacterBody3D":
 		can_interact = false
+		var auxscript: PlayerMovement = body
+		auxscript.ui_interact.visible = false
 		player = null
 		if gifts_deserved > 0 && spotlight != null:
 			spotlight.visible = true

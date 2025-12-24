@@ -20,13 +20,20 @@ func _unhandled_input(event: InputEvent) -> void:
 			var gift = gift_list[i].instantiate()
 			add_child(gift)
 			gift.position = Vector3( randf_range( -area_spawn.shape.radius, area_spawn.shape.radius), -0.15, randf_range( -area_spawn.shape.radius, area_spawn.shape.radius))
+		elif Global.house_list[Global.house_id] == 0:
+			var auxscript: PlayerMovement = player
+			auxscript.ui_interact.visible = false
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.get_class() == "CharacterBody3D":
 		can_interact = true
 		player = body
+		var auxscript: PlayerMovement = body
+		auxscript.ui_interact.visible = true
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.get_class() == "CharacterBody3D":
 		can_interact = false
+		var auxscript: PlayerMovement = body
+		auxscript.ui_interact.visible = false
 		player = null

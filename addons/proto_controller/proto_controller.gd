@@ -68,6 +68,7 @@ var follow_object: Node3D
 @export var hook_ui: TextureRect
 @export var ui_controls: CanvasLayer
 @export var ui_extra_jump: TextureRect
+@export var ui_interact: ColorRect
 
 var rope_pack = preload("res://Models/rope.tscn")
 
@@ -77,6 +78,7 @@ func _ready() -> void:
 	get_tree().root.add_child.call_deferred(rope)
 	rope.visible = false
 	ui_extra_jump.visible = false
+	ui_interact.visible = false
 	gift_amount.text = str(Global.gifts_amount)
 	check_input_mappings()
 	look_rotation.y = head_marker.rotation.y
